@@ -1,0 +1,9 @@
+<map id="MmwDemo_Cfg_t" name="MmwDemo_Cfg_t">
+<area shape="rect" id="node1" title="Millimeter Wave Demo configuration." alt="" coords="227,184,355,211"/>
+<area shape="rect" id="node2" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/control/mmwave/docs/mmwave.tag$struct_m_m_wave___open_cfg__t.html" title=" " alt="" coords="49,95,197,121"/>
+<area shape="rect" id="node3" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/control/mmwave/docs/mmwave.tag$struct_m_m_wave___ctrl_cfg__t.html" title=" " alt="" coords="221,95,360,121"/>
+<area shape="rect" id="node4" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/control/mmwave/docs/mmwave.tag$struct_m_m_wave___frame_cfg__t.html" title=" " alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node5" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/control/mmwave/docs/mmwave.tag$struct_m_m_wave___advanced_frame_cfg__t.html" title=" " alt="" coords="185,5,397,32"/>
+<area shape="rect" id="node6" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/control/mmwave/docs/mmwave.tag$struct_m_m_wave___cont_mode_cfg__t.html" title=" " alt="" coords="421,5,598,32"/>
+<area shape="rect" id="node7" href="$struct_mmw_demo__platform_cfg__t.html" title="Millimeter Wave Demo Platform Configuration." alt="" coords="385,95,559,121"/>
+</map>

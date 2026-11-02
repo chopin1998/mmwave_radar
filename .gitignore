@@ -1,0 +1,24 @@
+# Python virtual environment & bytecode (machine-specific paths)
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# TI XDCtools RTSC config packages & object dependency files (contain absolute paths!)
+firmware/xwr68xx_mmw/mmw_configPkg_*/
+firmware/xwr68xx_mmw/obj_*/
+firmware/xwr68xx_mmw/*.xer4f
+firmware/xwr68xx_mmw/*.xe674
+firmware/xwr68xx_mmw/*.map
+firmware/xwr68xx_mmw/*.rov.xs
+firmware/xwr68xx_mmw/*_mss.bin
+firmware/xwr68xx_mmw/*_dss.bin
+firmware/xwr68xx_mmw/*.tmp
+
+# Keep or ignore final flashable MetaImage as desired (uncomment to ignore)
+# firmware/xwr68xx_mmw/xwr68xx_mmw_demo.bin
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store

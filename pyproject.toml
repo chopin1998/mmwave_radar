@@ -1,0 +1,13 @@
+[project]
+name = "mmwave-radar"
+version = "0.1.0"
+description = "IWR6843 mmWave Radar Host Tools, OOB Visualizer, Mock Generator & SAR Imaging"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",
+    "pyserial>=3.5",
+    "pyqtgraph>=0.13.7",
+    "PySide6>=6.7.0",
+    "PyOpenGL>=3.1.7",
+]

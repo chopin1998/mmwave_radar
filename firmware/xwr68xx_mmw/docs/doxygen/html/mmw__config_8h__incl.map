@@ -1,0 +1,13 @@
+<map id="xwr68xx/mmw/include/mmw_config.h" name="xwr68xx/mmw/include/mmw_config.h">
+<area shape="rect" id="node1" title="This is the header file that describes configurations for the Millimeter Wave Demo." alt="" coords="351,5,503,47"/>
+<area shape="rect" id="node2" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/control/mmwave/docs/mmwave.tag$mmwave_8h.html.html" title=" " alt="" coords="5,102,203,129"/>
+<area shape="rect" id="node3" href="$sys__common_8h.html" title="This is the common header file used by the various mmWave SDK modules." alt="" coords="227,102,403,129"/>
+<area shape="rect" id="node10" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/objectdetection/objdetrangehwa/docs/objdetrangehwa.tag$objdetrangehwa_8h.html.html" title=" " alt="" coords="427,95,650,136"/>
+<area shape="rect" id="node11" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/objectdetection/objdetdsp/docs/objdetdsp.tag$objectdetection_8h.html.html" title=" " alt="" coords="673,95,873,136"/>
+<area shape="rect" id="node4" href="$sys__types_8h.html" title="This is the common header file that contains types for mmwave SDK." alt="" coords="57,191,215,218"/>
+<area shape="rect" id="node7" title=" " alt="" coords="239,191,390,218"/>
+<area shape="rect" id="node8" href="$sys__common__xwr68xx_8h.html" title="This is the common header file used by the various mmWave SDK modules for XWR68XX device." alt="" coords="415,184,580,225"/>
+<area shape="rect" id="node5" title=" " alt="" coords="57,281,122,307"/>
+<area shape="rect" id="node6" title=" " alt="" coords="147,281,221,307"/>
+<area shape="rect" id="node9" href="$sys__common__xwr68xx__mss_8h.html" title="This is the common header file used by the various mmWave SDK modules for XWR68xx Master subsystem." alt="" coords="415,273,580,315"/>
+</map>

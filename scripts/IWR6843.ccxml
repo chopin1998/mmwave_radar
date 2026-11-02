@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configurations XML_version="1.2" id="configurations_0">
+    <configuration XML_version="1.2" id="Serial Connection_0">
+        <instance XML_version="1.2" desc="Serial Connection_0" href="connections/Serial_Connection.xml" id="Serial Connection_0" xml="Serial_Connection.xml" xmlpath="connections"/>
+        <connection XML_version="1.2" id="Serial Connection_0">
+            <instance XML_version="1.2" href="drivers/serial_debugssm.xml" id="drivers" xml="serial_debugssm.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/serial_csdap.xml" id="drivers" xml="serial_csdap.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/serial_cortexr.xml" id="drivers" xml="serial_cortexr.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/serial_cschild.xml" id="drivers" xml="serial_cschild.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/serial_csetb.xml" id="drivers" xml="serial_csetb.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/serial_icepick_m.xml" id="drivers" xml="serial_icepick_m.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/serial_c674x.xml" id="drivers" xml="serial_c674x.xml" xmlpath="drivers"/>
+            <platform XML_version="1.2" id="platform_0">
+                <instance XML_version="1.2" desc="IWR6843_0" href="devices/iwr6843.xml" id="IWR6843_0" xml="iwr6843.xml" xmlpath="devices"/>
+            </platform>
+        </connection>
+    </configuration>
+</configurations>

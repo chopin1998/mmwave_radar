@@ -1,0 +1,12 @@
+<map id="MmwDemo_DPC_ObjDet_DynCfg_t" name="MmwDemo_DPC_ObjDet_DynCfg_t">
+<area shape="rect" id="node1" title="Data path DPC dynamic configuraiton." alt="" coords="761,139,935,180"/>
+<area shape="rect" id="node2" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/objectdetection/objdetdsp/docs/objdetdsp.tag$struct_d_p_c___object_detection___dyn_cfg__t.html" title=" " alt="" coords="471,171,623,212"/>
+<area shape="rect" id="node3" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/dpu/cfarcaproc/docs/cfarcaproc.tag$struct_d_p_u___c_f_a_r_c_a_proc___cfar_cfg__t.html" title=" " alt="" coords="25,89,230,115"/>
+<area shape="rect" id="node4" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpu/rangeproc/docs/rangeproc.tag$struct_d_p_u___range_proc___calib_dc_range_sig_cfg__t.html" title=" " alt="" coords="20,5,235,47"/>
+<area shape="rect" id="node10" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/objectdetection/objdetrangehwa/docs/objdetrangehwa.tag$struct_d_p_c___object_detection_range_h_w_a___dyn_cfg__t.html" title=" " alt="" coords="452,48,643,89"/>
+<area shape="rect" id="node5" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/dpu/cfarcaproc/docs/cfarcaproc.tag$struct_d_p_u___c_f_a_r_c_a_proc___fov_cfg__t.html" title=" " alt="" coords="26,206,229,233"/>
+<area shape="rect" id="node6" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/objectdetection/objdetdsp/docs/objdetdsp.tag$struct_d_p_c___object_detection___static_clutter_removal_cfg___base__t.html" title=" " alt="" coords="40,257,215,313"/>
+<area shape="rect" id="node7" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/dpu/aoaproc/docs/aoaproc.tag$struct_d_p_u___ao_a_proc___extended_max_velocity_cfg__t.html" title=" " alt="" coords="5,337,249,379"/>
+<area shape="rect" id="node8" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/dpu/aoaproc/docs/aoaproc.tag$struct_d_p_u___ao_a_proc___fov_aoa_cfg__t.html" title=" " alt="" coords="30,403,225,430"/>
+<area shape="rect" id="node9" href="/home/lte_phy/Desktop/Kalyan/Gen1/68xx_safe_secure/mmwave_sdk/ti/datapath/dpc/dpu/aoaproc/docs/aoaproc.tag$struct_d_p_u___ao_a_proc___multi_obj_beam_forming_cfg__t.html" title=" " alt="" coords="28,140,227,181"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="xwr68xx/mmw/mmw_res.h" name="xwr68xx/mmw/mmw_res.h">
+<area shape="rect" id="node1" title="Defines partitioning of hardware resources (HWA, EDMA etc) among the DPCs and other components in the..." alt="" coords="88,5,267,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,160,107"/>
+<area shape="rect" id="node3" href="$sys__common_8h.html" title="This is the common header file used by the various mmWave SDK modules." alt="" coords="184,80,360,107"/>
+<area shape="rect" id="node4" href="$sys__types_8h.html" title="This is the common header file that contains types for mmwave SDK." alt="" coords="14,162,173,189"/>
+<area shape="rect" id="node7" title=" " alt="" coords="197,162,347,189"/>
+<area shape="rect" id="node8" href="$sys__common__xwr68xx_8h.html" title="This is the common header file used by the various mmWave SDK modules for XWR68XX device." alt="" coords="372,155,537,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="14,251,79,278"/>
+<area shape="rect" id="node6" title=" " alt="" coords="104,251,179,278"/>
+<area shape="rect" id="node9" href="$sys__common__xwr68xx__mss_8h.html" title="This is the common header file used by the various mmWave SDK modules for XWR68xx Master subsystem." alt="" coords="372,244,537,285"/>
+</map>

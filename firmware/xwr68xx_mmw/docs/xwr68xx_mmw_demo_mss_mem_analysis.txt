@@ -1,0 +1,33 @@
+                                   OVERVIEW                                    
+Memory                              Used               Total        Percent Used
+--------------------------------------------------------------------------------
+PAGE 0:
+DATA_RAM                           64496              196608              32.80%
+HS_RAM                                 0               32768               0.00%
+HWA_RAM                                0               65536               0.00%
+L3_RAM                            786432              786432             100.00%
+PROG_RAM                          154054              524032              29.40%
+VECTORS                               60                 256              23.44%
+PAGE 1:
+L3_RAM                                 0              786432               0.00%
+
+
+                            Type           DATA_RAM       HS_RAM      HWA_RAM       L3_RAM     PROG_RAM      VECTORS
+--------------------------------------------------------------------------------
+(.common:MSS_RCM_CLKDIVCTL0 code                  4            0            0            0            0            0
+(.common:MSS_RCM_CLKSRCSEL0 code                  4            0            0            0            0            0
+(.common:MSS_RCM_CLKSRCSEL1 code                  4            0            0            0            0            0
+(.common:MSS_TOPRCM_CLKDIV_ code                  4            0            0            0            0            0
+(.common:MSS_TOPRCM_CLKSRCS code                  4            0            0            0            0            0
+(.common:gMmwDemoFlash)     code                 12            0            0            0            0            0
+APP                         code              17992            0            0            0        52490           60
+APP                         heap              38912            0            0       786432            0            0
+BIOS                        code                  4            0            0            0        22479            0
+COMPONENTS_CORE             code               3592            0            0            0        48408            0
+COMPONENTS_OPTIONAL         code               1876            0            0            0        18142            0
+libqspi_xwr68xx.aer4f       code                 20            0            0            0          795            0
+libqspiflash_xwr68xx.aer4f  code                 20            0            0            0         2168            0
+libsleep_xwr68xx.aer4f      code                  0            0            0            0         7480            0
+linker-generated            linker             2048            0            0            0          357            0
+linker-generated            unknown               0            0            0            0         1423            0
+mmwdemo_flash.oer4f         code                  0            0            0            0          312            0
