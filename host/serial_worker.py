@@ -120,9 +120,55 @@ class RadarSerialWorker(QThread):
             self.status_changed.emit(f"CLI Error: {exc}")
             return False
 
-    def stop(self) -> None:
+    def send_cli_command(self, cmd: str, wait_s: float = 0.6) -> bool:
+        """Send a single CLI command over the 115200 bps User UART (or log in Mock mode)."""
+        cmd_clean = cmd.strip()
+        if not cmd_clean:
+            return True
+
+        if self.mock_mode:
+            self.cli_log.emit(f"[MOCK CLI] mmwDemo:/>{cmd_clean}\n  Done")
+            return True
+
+        try:
+            with serial.Serial(self.cli_port, self.cli_baud, timeout=0.5) as cli:
+                cli.reset_input_buffer()
+                cli.write((cmd_clean + "\n").encode("ascii"))
+                cli.flush()
+                self.cli_log.emit(f">> {cmd_clean}")
+
+                deadline = time.monotonic() + wait_s
+                resp_acc = ""
+                while time.monotonic() < deadline:
+                    raw = cli.read_until(b"\n").decode("utf-8", errors="ignore")
+                    if raw:
+                        resp_acc += raw
+                        for rline in raw.splitlines():
+                            rstrip = rline.strip()
+                            if rstrip:
+                                self.cli_log.emit(f"<< {rstrip}")
+                        if "Done" in resp_acc or "Ignored" in resp_acc:
+                            break
+                        if "Error" in resp_acc:
+                            return False
+                    else:
+                        time.sleep(0.01)
+            return True
+        except serial.SerialException as exc:
+            self.cli_log.emit(f"[UART ERROR] CLI port {self.cli_port}: {exc}")
+            return False
+
+    def stop(self, deep_power_down: bool = False) -> None:
         self._running = False
         self.wait(2000)
+        if deep_power_down:
+            # Stop RF + shut down DSP power, BSS clock, RF analog, APLL, and scale MSS VCLK to 40MHz
+            self.send_cli_command("idlePowerDown -1 1 0 1 1 1 0 0 0 1000000", wait_s=0.8)
+            self.status_changed.emit("Stopped (Hardware Deep Power Down - Press NRST to wake)")
+        else:
+            # Stop 60 GHz RF chirps, HWA/DSP frame loop, and Data UART while keeping CLI responsive
+            self.send_cli_command("sensorStop", wait_s=0.6)
+            self.status_changed.emit("Stopped (Sensor Idle / RF Off)")
 
     def run(self) -> None:
         self._running = True

@@ -195,6 +195,10 @@ static int32_t MmwDemo_CLISensorStart (int32_t argc, char* argv[])
         return 0;
     }
 
+#ifdef SYS_COMMON_XWR68XX_LOW_POWER_MODE_EN
+    xWR6843_dss_clock_ungate();
+#endif
+
     if (doReconfig == false)
     {
          /* User intends to issue sensor start without config, check if no
@@ -362,6 +366,9 @@ static int32_t MmwDemo_CLISensorStop (int32_t argc, char* argv[])
     MmwDemo_resetStaticCfgPendingState();
 
     gMmwMssMCB.sensorState = MmwDemo_SensorState_STOPPED;
+#ifdef SYS_COMMON_XWR68XX_LOW_POWER_MODE_EN
+    xWR6843_dss_clock_gate();
+#endif
     return 0;
 }
 

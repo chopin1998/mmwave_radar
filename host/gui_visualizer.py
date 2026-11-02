@@ -57,13 +57,8 @@ except Exception:
     HAS_OPENGL = False
 
 
-DEFAULT_CFG_PATH = str(
-    Path(__file__).resolve().parent.parent
-    / "firmware"
-    / "xwr68xx_mmw"
-    / "profiles"
-    / "profile_3d.cfg"
-)
+PROFILES_DIR = Path(__file__).resolve().parent.parent / "firmware" / "xwr68xx_mmw" / "profiles"
+DEFAULT_CFG_PATH = str(PROFILES_DIR / "profile_3d_heatmap.cfg")
 
 
 class RadarVisualizerWindow(QMainWindow):
@@ -149,6 +144,17 @@ class RadarVisualizerWindow(QMainWindow):
         # Profile .cfg Group
         cfg_group = QGroupBox("2. Radar Profile (.cfg)")
         cfg_vbox = QVBoxLayout(cfg_group)
+
+        preset_row = QHBoxLayout()
+        preset_row.addWidget(QLabel("Preset:"))
+        self.cfg_preset_combo = QComboBox()
+        self.cfg_preset_combo.addItem("3D + Azimuth Heatmap (5 Hz)", str(PROFILES_DIR / "profile_3d_heatmap.cfg"))
+        self.cfg_preset_combo.addItem("3D Fast Point Cloud (10 Hz)", str(PROFILES_DIR / "profile_3d.cfg"))
+        self.cfg_preset_combo.addItem("2D Point Cloud (10 Hz)", str(PROFILES_DIR / "profile_2d.cfg"))
+        self.cfg_preset_combo.currentIndexChanged.connect(self._on_cfg_preset_changed)
+        preset_row.addWidget(self.cfg_preset_combo, 1)
+        cfg_vbox.addLayout(preset_row)
+
         cfg_row = QHBoxLayout()
         self.cfg_path_edit = QLineEdit(cfg_path)
         browse_btn = QPushButton("Browse...")
@@ -164,16 +170,32 @@ class RadarVisualizerWindow(QMainWindow):
         )
         self.start_btn.clicked.connect(self.start_streaming)
 
-        self.stop_btn = QPushButton("Stop")
+        self.stop_btn = QPushButton("Stop (RF Off)")
         self.stop_btn.setStyleSheet(
             "QPushButton { background-color: #9e2a2b; color: white; font-weight: bold; padding: 6px; }"
         )
         self.stop_btn.setEnabled(False)
         self.stop_btn.clicked.connect(self.stop_streaming)
 
+        self.deep_sleep_btn = QPushButton("Deep Sleep")
+        self.deep_sleep_btn.setToolTip(
+            "Send 'idlePowerDown -1 1 0 1 1 1 0 0 0 1000000' to shut down RF, APLL, BSS, DSP & drop MSS to 40MHz (lowest power; requires NRST to wake)"
+        )
+        self.deep_sleep_btn.setStyleSheet(
+            "QPushButton { background-color: #3b4252; color: #e5e9f0; font-weight: bold; padding: 6px; }"
+        )
+        self.deep_sleep_btn.clicked.connect(self.deep_power_down_hardware)
+
         btn_row.addWidget(self.start_btn)
         btn_row.addWidget(self.stop_btn)
+        btn_row.addWidget(self.deep_sleep_btn)
         cfg_vbox.addLayout(btn_row)
+
+        self.deep_sleep_on_stop_check = QCheckBox(
+            "Lowest Power on Stop (idlePowerDown; requires NRST to wake)"
+        )
+        self.deep_sleep_on_stop_check.setChecked(False)
+        cfg_vbox.addWidget(self.deep_sleep_on_stop_check)
         left_layout.addWidget(cfg_group)
 
         # Telemetry Group
@@ -315,6 +337,11 @@ class RadarVisualizerWindow(QMainWindow):
         self.cli_port_edit.setText("/tmp/ttyMockRadarCLI")
         self.data_port_edit.setText("/tmp/ttyMockRadarDATA")
 
+    def _on_cfg_preset_changed(self, index: int) -> None:
+        preset_path = self.cfg_preset_combo.itemData(index)
+        if preset_path:
+            self.cfg_path_edit.setText(str(preset_path))
+
     def _browse_cfg(self) -> None:
         path, _ = QFileDialog.getOpenFileName(
             self, "Select TI mmWave .cfg File", str(Path(DEFAULT_CFG_PATH).parent), "CFG Files (*.cfg)"
@@ -323,7 +350,9 @@ class RadarVisualizerWindow(QMainWindow):
             self.cfg_path_edit.setText(path)
 
     def start_streaming(self) -> None:
-        self.stop_streaming()
+        if self.worker is not None:
+            self.worker.stop(deep_power_down=False)
+            self.worker = None
 
         is_mock = self.mode_combo.currentIndex() == 0
         cfg_path = self.cfg_path_edit.text().strip()
@@ -355,11 +384,38 @@ class RadarVisualizerWindow(QMainWindow):
         self.stop_btn.setEnabled(True)
 
     def stop_streaming(self) -> None:
+        deep = self.deep_sleep_on_stop_check.isChecked()
         if self.worker is not None:
-            self.worker.stop()
+            self.worker.stop(deep_power_down=deep)
             self.worker = None
         self.start_btn.setEnabled(True)
         self.stop_btn.setEnabled(False)
+
+    def deep_power_down_hardware(self) -> None:
+        """Immediately stop sensor and enter lowest-power idlePowerDown state."""
+        if self.worker is not None:
+            self.worker.stop(deep_power_down=True)
+            self.worker = None
+            self.start_btn.setEnabled(True)
+            self.stop_btn.setEnabled(False)
+            return
+
+        is_mock = self.mode_combo.currentIndex() == 0
+        temp_worker = RadarSerialWorker(
+            config=self.config,
+            mock_mode=is_mock,
+            cli_port=self.cli_port_edit.text().strip(),
+            data_port=self.data_port_edit.text().strip(),
+        )
+        temp_worker.cli_log.connect(self.cli_console.appendPlainText)
+        temp_worker.send_cli_command("idlePowerDown -1 1 0 1 1 1 0 0 0 1000000", wait_s=0.8)
+        self.statusBar().showMessage("Hardware in Deep Power Down (Press NRST on board to wake)")
+
+    def closeEvent(self, event) -> None:
+        if self.worker is not None:
+            self.worker.stop(deep_power_down=self.deep_sleep_on_stop_check.isChecked())
+            self.worker = None
+        super().closeEvent(event)
 
     def _on_worker_stats(
         self, frames_ok: int, sync_losses: int, tlv_errs: int, fps: float
